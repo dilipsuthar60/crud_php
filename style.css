@@ -121,3 +121,9 @@ a {
   justify-content: center;
   align-items: center;
 }
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  display: block;
+}

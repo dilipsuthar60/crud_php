@@ -13,21 +13,80 @@ if (isset($_GET['editid'])) {
     $subject = $row["subject"];
     $gender = $row["gender"];
     $message = $row["message"];
+    $errorEdit = NULL;
+    $nameerror = "";
+    $emailerror = "";
+    $passworderror = "";
+    $subjecterror = "";
+    $gendererror = "";
+    $messageerror = "";
+    echo "before";
 
     if (isset($_POST['submit'])) {
+        echo "post";
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $subject = $_POST['subject'];
         $gender = $_POST['gender'];
         $message = $_POST['message'];
-        echo '<script> alert("are you want to edit data")</script>';
-        $sql = "UPDATE StudentData SET  `name` = '$name', `email` = '$email', `password` = '$password', `subject` = '$subject', `gender` = '$gender', `message` = '$message' WHERE `srno` = $id;";
-        $result = $connect->query($sql);
-        if ($result) {
-            // echo '<script>window.location.href = "display.php?submit"</script>';
-            echo '<script>window.location.href = "display.php?edit"</script>';
-            // header("location:display.php?page=" . $current_page . "&edit");
+        if (empty($name)) {
+            $nameerror = "name is required";
+            $errorEdit = 1;
+        } else if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $nameerror = "name should be letter";
+            $errorEdit = 1;
+        } else {
+            $sql = "SELECT * FROM `StudentData` WHERE `name` = '" . $name . "'";
+            $result = $connect->query($sql);
+            $present_row_count_in_db = mysqli_num_rows($result);
+            if ($present_row_count_in_db > 0) {
+                $nameerror = "name is already exist";
+                $errorEdit = 1;
+            }
+        }
+        if (empty($email)) {
+            $errorEdit = 1;
+            $emailerror = "email is required";
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailerror = "invalid email";
+            $errorEdit = 1;
+        } else {
+            $sql = "SELECT * FROM `StudentData` WHERE `email` = '" . $email . "'";
+            $result = $connect->query($sql);
+            $present_row_count_in_db = mysqli_num_rows($result);
+            if ($present_row_count_in_db > 0) {
+                $emailerror = "email is already exist";
+                $errorEdit = 1;
+            }
+        }
+        if (empty($password)) {
+            $passworderror = "password is required";
+            $errorEdit = 1;
+        }
+        if (empty($gender)) {
+            $gendererror = "gender is required";
+            $errorEdit = 1;
+        }
+        if (empty($subject)) {
+            $subjecterror = "subject is required";
+            $errorEdit = 1;
+        }
+        if (empty($message)) {
+            $messageerror = "message is required";
+            $errorEdit = 1;
+        }
+        echo "post1";
+        if ($errorEdit == NULL) {
+            echo "post2";
+            echo '<script> alert("are you want to edit data")</script>';
+            $sql = "UPDATE StudentData SET  `name` = '$name', `email` = '$email', `password` = '$password', `subject` = '$subject', `gender` = '$gender', `message` = '$message' WHERE `srno` = $id;";
+            $result = $connect->query($sql);
+            if ($result) {
+                // echo '<script>window.location.href = "display.php?submit"</script>';
+                echo '<script>window.location.href = "display.php?edit"</script>';
+                // header("location:display.php?page=" . $current_page . "&edit");
+            }
         }
     }
 }
@@ -45,28 +104,34 @@ if (isset($_GET['editid'])) {
 
 <body>
     <form method="post">
-        <?php if (isset($error)) {
-            if ($error == 1) {
+        <?php if (isset($errorEdit)) {
+            if ($errorEdit == 1) {
                 echo '<div style="text-align:center; color:#c0392b">Something Went Wrong Please Check</div>';
-            }
-            if ($error == 0) {
-                echo '<div style="text-align:center; color:#27ae60">Form Succes Fully Submited<br>record insert successfully
-        </div>';
             }
         }
         ?>
         <h1 class="heading">Student From</h1>
         <div>
             <label for="name">Name:</label>
-            <input placeholder="enter a name" type="text" id="name" name="name" value=<?php echo $name; ?> />
+            <input placeholder="enter a name" type="text" id="name" name="name" value="<?php echo $name; ?>" />
+            <span class="error" style="display:block">
+                <?php echo $nameerror; ?>
+            </span>
         </div>
         <div>
             <label for="email">Email:</label>
-            <input placeholder="enter a email" type="email" id="email" name="email" value=<?php echo $email; ?> />
+            <input placeholder="enter a email" type="email" id="email" name="email" value="<?php echo $email; ?>" />
+            <span class="error" style="display:block">
+                <?php echo $emailerror; ?>
+            </span>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input placeholder="enter a password" type="password" id="password" name="password" value=<?php echo $password; ?> />
+            <input placeholder="enter a password" type="password" id="password" name="password"
+                value="<?php echo $password; ?>" />
+            <span class="error" style="display:block">
+                <?php echo $passworderror; ?>
+            </span>
         </div>
         <div>
             <label for="subject">Subject:</label>
@@ -76,6 +141,9 @@ if (isset($_GET['editid'])) {
                 <option value="hindi" selected>hindi</option>
                 <option value="algorithm">algorithm</option>
             </select>
+            <span class="error" style="display:block">
+                <?php echo $subjecterror; ?>
+            </span>
         </div>
         <div>
             <label for="gender">Gender:</label>
@@ -87,11 +155,17 @@ if (isset($_GET['editid'])) {
                 echo "checked";
             } ?> />
             <label for="gender">Female</label>
+            <span class="error" style="display:block">
+                <?php echo $gendererror; ?>
+            </span>
 
         </div>
-        <div class="message-section">
-            <span>Massage:</span>
-            <input name="message" type="text" value=<?php echo $message; ?>></input>
+        <div>
+            <label for="message">Massage:</label>
+            <input value="<?php echo $message; ?>" name="message" type="text"></input>
+            <span class="error">
+                <?php echo $messageerror; ?>
+            </span>
         </div>
         <input type="submit" name="submit" value="Update" class="btn">
     </form>
