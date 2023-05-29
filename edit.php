@@ -23,7 +23,6 @@ if (isset($_GET['editid'])) {
     echo "before";
 
     if (isset($_POST['submit'])) {
-        echo "post";
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -76,16 +75,14 @@ if (isset($_GET['editid'])) {
             $messageerror = "message is required";
             $errorEdit = 1;
         }
-        echo "post1";
         if ($errorEdit == NULL) {
-            echo "post2";
-            echo '<script> alert("are you want to edit data")</script>';
+            // echo '<script> alert("are you want to edit data")</script>';
             $sql = "UPDATE StudentData SET  `name` = '$name', `email` = '$email', `password` = '$password', `subject` = '$subject', `gender` = '$gender', `message` = '$message' WHERE `srno` = $id;";
             $result = $connect->query($sql);
             if ($result) {
                 // echo '<script>window.location.href = "display.php?submit"</script>';
-                echo '<script>window.location.href = "display.php?edit"</script>';
-                // header("location:display.php?page=" . $current_page . "&edit");
+                // echo '<script>window.location.href = "display.php?edit"</script>';
+                header("location:display.php?page=" . $current_page . "&edit");
             }
         }
     }
@@ -136,10 +133,18 @@ if (isset($_GET['editid'])) {
         <div>
             <label for="subject">Subject:</label>
             <select id="subject" name="subject">
-                <option value="math">math</option>
-                <option value="science">science</option>
-                <option value="hindi" selected>hindi</option>
-                <option value="algorithm">algorithm</option>
+                <option value="math" <?php if ($subject == "math") {
+                    echo "selected";
+                } ?>>math</option>
+                <option value="science" <?php if ($subject == "science") {
+                    echo "selected";
+                } ?>>science</option>
+                <option value="hindi" <?php if ($subject == "hindi") {
+                    echo "selected";
+                } ?>>hindi</option>
+                <option value="algorithm" <?php if ($subject == "algorithm") {
+                    echo "selected";
+                } ?>>algorithm</option>
             </select>
             <span class="error" style="display:block">
                 <?php echo $subjecterror; ?>

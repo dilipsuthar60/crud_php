@@ -71,6 +71,9 @@
         $rowCount = 0;
         if ($current_page_count == 0) {
             $page_number--;
+            $start_page = ($page_number - 1) * $per_page_number;
+            $sql = "SELECT * FROM `StudentData` order by  `srno` DESC limit $start_page,$per_page_number ";
+            $result = $connect->query($sql);
         }
         while ($row = mysqli_fetch_assoc($result)) {
             $srno = $row["srno"];

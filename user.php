@@ -4,7 +4,7 @@ $error = NULL;
 $name = "";
 $email = "";
 $password = "";
-$subject = "";
+$subject = "hindi";
 $gender = "";
 $message = "";
 $nameerror = "";
@@ -67,13 +67,11 @@ if (isset($_POST['submit'])) {
         $error = 1;
     }
     if ($error == NULL) {
-        echo '<script> alert("are you want to insert data")</script>';
         $error = null;
         $sql = "INSERT INTO StudentData VALUES (NULL,'$name', '$email', '$password', '$subject', '$gender', '$message')";
         $result = $connect->query($sql);
         if ($result) {
-            // header('location:display.php?submit');
-            echo '<script>window.location.href = "display.php?submit"</script>';
+            header('location:display.php?submit');
         }
 
     }
@@ -124,10 +122,18 @@ if (isset($_POST['submit'])) {
         <div>
             <label for="subject">Subject:</label>
             <select id="subject" name="subject">
-                <option value="math">math</option>
-                <option value="science">science</option>
-                <option value="hindi" selected>hindi</option>
-                <option value="algorithm">algorithm</option>
+                <option value="math" <?php if ($subject == "math") {
+                    echo "selected";
+                } ?>>math</option>
+                <option value="science" <?php if ($subject == "science") {
+                    echo "selected";
+                } ?>>science</option>
+                <option value="hindi" <?php if ($subject == "hindi") {
+                    echo "selected";
+                } ?>>hindi</option>
+                <option value="algorithm" <?php if ($subject == "algorithm") {
+                    echo "selected";
+                } ?>>algorithm</option>
             </select>
             <span class="error">
                 <?php echo $subjecterror; ?>
