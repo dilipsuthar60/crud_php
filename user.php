@@ -66,7 +66,6 @@ if (isset($_POST['submit'])) {
         $messageerror = "message is required";
         $error = 1;
     }
-    // echo $error;
     if ($error == NULL) {
         echo '<script> alert("are you want to insert data")</script>';
         $error = null;
