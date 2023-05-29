@@ -27,12 +27,16 @@ if (isset($_POST['submit'])) {
         $nameerror = "name should be letter";
         $error = 1;
     } else {
-        $sql = "SELECT * FROM `StudentData` WHERE `name` = '" . $name . "'";
-        $result = $connect->query($sql);
-        $present_row_count_in_db = mysqli_num_rows($result);
-        if ($present_row_count_in_db > 0) {
-            $nameerror = "name is already exist";
-            $error = 1;
+        if (strlen($name) > 10) {
+            $nameerror = "name length should be less than 10";
+        } else {
+            $sql = "SELECT * FROM `StudentData` WHERE `name` = '" . $name . "'";
+            $result = $connect->query($sql);
+            $present_row_count_in_db = mysqli_num_rows($result);
+            if ($present_row_count_in_db > 0) {
+                $nameerror = "name is already exist";
+                $error = 1;
+            }
         }
     }
     if (empty($email)) {
@@ -42,12 +46,16 @@ if (isset($_POST['submit'])) {
         $emailerror = "invalid email";
         $error = 1;
     } else {
-        $sql = "SELECT * FROM `StudentData` WHERE `email` = '" . $email . "'";
-        $result = $connect->query($sql);
-        $present_row_count_in_db = mysqli_num_rows($result);
-        if ($present_row_count_in_db > 0) {
-            $emailerror = "email is already exist";
-            $error = 1;
+        if (strlen($email) > 30) {
+            $emailerror = "email lenght should be less than 30";
+        } else {
+            $sql = "SELECT * FROM `StudentData` WHERE `email` = '" . $email . "'";
+            $result = $connect->query($sql);
+            $present_row_count_in_db = mysqli_num_rows($result);
+            if ($present_row_count_in_db > 0) {
+                $emailerror = "email is already exist";
+                $error = 1;
+            }
         }
     }
     if (empty($password)) {
@@ -73,7 +81,6 @@ if (isset($_POST['submit'])) {
         if ($result) {
             header('location:display.php?submit');
         }
-
     }
 }
 ?>
@@ -141,14 +148,15 @@ if (isset($_POST['submit'])) {
         </div>
         <div>
             <label for="gender">Gender:</label>
-            <label for="gender">Male</label>
             <input type="radio" type="gender" id="gender" name="gender" value="Male" <?php if ($gender == "Male") {
                 echo "checked";
             } ?> />
-            <label for="gender">Female</label>
+            <label for="gender">Male</label>
+
             <input type="radio" type="gender" id="gender" name="gender" value="Female" <?php if ($gender == "Female") {
                 echo "checked";
             } ?> />
+            <label for="gender">Female</label>
             <span class="error">
                 <?php echo $gendererror; ?>
             </span>
