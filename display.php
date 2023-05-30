@@ -99,10 +99,10 @@
     <div class="head-btn">
         <a href="user.php"> Add Student</a>
         <form method="GET">
-            <input value="<?php if (isset($_GET["search"])) {
+            <input class="search-input" value="<?php if (isset($_GET["search"])) {
                 echo $_GET["search"];
             } ?>" placeholder="enter a name" type="text" id="search" name="search" />
-            <button type="search">Search</button>
+            <button type="search" class="btn btn-search">Search</button>
         </form>
     </div>
     <?php
@@ -118,10 +118,10 @@
             <th><a href="display.php?page=<?php echo $page_number; ?>&sort=email&orderby=<?php echo $emailorder; ?>">
                     Email<span style='font-size:20px;'>&#8593;</span>
                     <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a
+            <!-- <th><a
                     href="display.php?page=<?php echo $page_number; ?>&sort=password&orderby=<?php echo $passwordorder; ?>">Password<span
                         style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th> -->
             <th><a
                     href="display.php?page=<?php echo $page_number; ?>&sort=subject&orderby=<?php echo $subjectorder; ?>">Subject<span
                         style='font-size:20px;'>&#8593;</span>
@@ -133,6 +133,7 @@
                     href="display.php?page=<?php echo $page_number; ?>&sort=message&orderby=<?php echo $messageorder; ?>">Message<span
                         style='font-size:20px;'>&#8593;</span>
                     <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a>Action</a></th>
         </tr>
         <?php
         $current_page_count = mysqli_num_rows($result);
@@ -164,7 +165,6 @@
             <td>' . $rowCount + ($page_number - 1) * $per_page_number . '</td>
             <td>' . $name . '</td>
             <td>' . $email . '</td>
-            <td>' . $password . '</td>
             <td>' . $subject . '</td>
             <td>' . $gender . '</td>
             <td>' . $message . '</td>
