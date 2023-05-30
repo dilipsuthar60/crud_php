@@ -64,7 +64,7 @@
             <th>Subject</th>
             <th>Gender</th>
             <th>Message</th>
-            <th>Action</th>
+            <th style="text-align:center">Action</th>
         </tr>
         <?php
         $current_page_count = mysqli_num_rows($result);
