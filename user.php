@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <form method="post">
+    <form method="post" class="form">
         <?php if (isset($error)) {
             if ($error == 1) {
                 echo '<div style="text-align:center; color:#c0392b">Something Went Wrong Please Check</div>';

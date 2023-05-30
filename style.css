@@ -20,7 +20,7 @@ body {
   color: #009432;
 }
 
-form {
+.form {
   background: #ffffff;
   padding: 2rem;
   display: flex;

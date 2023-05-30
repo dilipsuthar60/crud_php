@@ -12,6 +12,17 @@
 <body>
     <?php
     include "config.php";
+    $srnoorder = "asc";
+    $nameorder = "asc";
+    $emailorder = "asc";
+    $passwordorder = "asc";
+    $subjectorder = "asc";
+    $genderorder = "asc";
+    $messageorder = "asc";
+    $searchvalue = "";
+    $sql = "SELECT * FROM StudentData";
+    $result = $connect->query($sql);
+    $total_row = mysqli_num_rows($result);
     $per_page_number = 3;
     if (isset($_GET['page'])) {
         $page_number = $_GET['page'];
@@ -51,30 +62,83 @@
     $start_page = ($page_number - 1) * $per_page_number;
     $sql = "SELECT * FROM `StudentData` order by  `srno` DESC limit $start_page,$per_page_number ";
     $result = $connect->query($sql);
+    if (isset($_GET["sort"])) {
+        $id = $_GET["sort"];
+        $ordersorting = $_GET["orderby"];
+        $sql = "SELECT * from StudentData ORDER BY " . $id . " " . $ordersorting . " limit $start_page,$per_page_number ";
+        $result = $connect->query($sql);
+        if ($id == "srno" and $ordersorting == "asc") {
+            $srnoorder = "desc";
+        } else if ($id == "name" and $ordersorting == "asc") {
+            $nameorder = "desc";
+        } else if ($id == "email" and $ordersorting == "asc") {
+            $emailorder = "desc";
+        } else if ($id == "password" and $ordersorting == "asc") {
+            $passwordorder = "desc";
+        } else if ($id == "subject" and $ordersorting == "asc") {
+            $subjectorder = "desc";
+        } else if ($id == "gender" and $ordersorting == "asc") {
+            $genderorder = "desc";
+        } else if ($id == "message" and $ordersorting == "asc") {
+            $messageorder = "desc";
+        }
+    }
+    if (isset($_POST['submit'])) {
+        $name = trim($_POST['name']);
+        if (strlen($name) > 2) {
+            $sql = "SELECT * FROM `StudentData` WHERE (`name` LIKE '%" . $name . "%' or `email` LIKE '%" . $name . "%' or `gender` LIKE '%" . $name . "%' or `subject` LIKE '%" . $name . "%')";
+            $result = $connect->query($sql);
+            $total_row = mysqli_num_rows($result);
+        }
+    }
     ?>
-    <div class="head-btn"><a href="user.php"> Add User</a>
-        <a href="alldata.php"> Show All Data</a>
+    <div class="head-btn">
+        <a href="user.php"> Add Student</a>
+        <form method="post">
+            <input value="" placeholder="enter a name" type="text" id="name" name="name" />
+            <input type="submit" name="submit" value="Search" class="btn">
+        </form>
     </div>
     <table class="styled-table">
         <tr>
-            <th>Srno</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Subject</th>
-            <th>Gender</th>
-            <th>Message</th>
-            <th style="text-align:center">Action</th>
+            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=srno&orderby=<?php echo $srnoorder; ?>">
+                    Srno<span style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=name&orderby=<?php echo $nameorder; ?>">
+                    Name<span style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=email&orderby=<?php echo $emailorder; ?>">
+                    Email<span style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a
+                    href="display.php?page=<?php echo $page_number; ?>&sort=password&orderby=<?php echo $passwordorder; ?>">Password<span
+                        style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a
+                    href="display.php?page=<?php echo $page_number; ?>&sort=subject&orderby=<?php echo $subjectorder; ?>">Subject<span
+                        style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=gender&orderby=<?php echo $genderorder; ?>">Gender<span
+                        style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
+            <th><a
+                    href="display.php?page=<?php echo $page_number; ?>&sort=message&orderby=<?php echo $messageorder; ?>">Message<span
+                        style='font-size:20px;'>&#8593;</span>
+                    <span style='font-size:20px;'>&#8595;</span> </a></th>
         </tr>
         <?php
         $current_page_count = mysqli_num_rows($result);
         $rowCount = 0;
-        if ($current_page_count == 0) {
-            $page_number--;
-            $start_page = ($page_number - 1) * $per_page_number;
-            $sql = "SELECT * FROM `StudentData` order by  `srno` DESC limit $start_page,$per_page_number ";
-            $result = $connect->query($sql);
+        if ($srnoorder == "desc") {
+            $rowCount = $total_row;
         }
+        // if ($current_page_count == 0) {
+        //     $page_number--;
+        //     $start_page = ($page_number - 1) * $per_page_number;
+        //     $sql = "SELECT * FROM `StudentData` order by  `srno` DESC limit $start_page,$per_page_number ";
+        //     $result = $connect->query($sql);
+        // }
+        
         while ($row = mysqli_fetch_assoc($result)) {
             $srno = $row["srno"];
             $name = $row["name"];
@@ -83,7 +147,11 @@
             $subject = $row["subject"];
             $gender = $row["gender"];
             $message = $row["message"];
-            $rowCount++;
+            if ($srnoorder == "desc") {
+                $rowCount--;
+            } else {
+                $rowCount++;
+            }
             echo '<tr>
             <td>' . $rowCount + ($page_number - 1) * $per_page_number . '</td>
             <td>' . $name . '</td>
@@ -98,9 +166,9 @@
     </table>
     <div class="pagination_section">
         <?php
-        $sql = "SELECT * FROM StudentData";
-        $result = $connect->query($sql);
-        $total_number_of_rows = mysqli_num_rows($result);
+        // $sql = "SELECT * FROM StudentData";
+        // $result = $connect->query($sql);
+        $total_number_of_rows = $total_row;
         $page_needed = ceil(($total_number_of_rows) / ($per_page_number));
         if ($page_number > 1) {
             echo '<a href="display.php?page=' . ($page_number - 1) . '">Prev</a>';
