@@ -20,8 +20,8 @@ if (isset($_GET['editid'])) {
     $subjecterror = "";
     $gendererror = "";
     $messageerror = "";
-    $sql = "delete from StudentData where srno=$id";
-    $result = $connect->query($sql);
+    // $sql = "delete from StudentData where srno=$id";
+    // $result = $connect->query($sql);
     if (isset($_POST['submit'])) {
         echo $_POST['srno'];
         $name = $_POST['name'];
@@ -37,14 +37,6 @@ if (isset($_GET['editid'])) {
         } else if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
             $nameerror = "name should be letter";
             $errorEdit = 1;
-        } else {
-            $sql = "SELECT * FROM `StudentData` WHERE `name` = '" . $name . "'";
-            $result = $connect->query($sql);
-            $present_row_count_in_db = mysqli_num_rows($result);
-            if ($present_row_count_in_db > 0) {
-                $nameerror = "name is already exist";
-                $errorEdit = 1;
-            }
         }
         if (empty($email)) {
             $errorEdit = 1;
@@ -52,14 +44,6 @@ if (isset($_GET['editid'])) {
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailerror = "invalid email";
             $errorEdit = 1;
-        } else {
-            $sql = "SELECT * FROM `StudentData` WHERE `email` = '" . $email . "'";
-            $result = $connect->query($sql);
-            $present_row_count_in_db = mysqli_num_rows($result);
-            if ($present_row_count_in_db > 0) {
-                $emailerror = "email is already exist";
-                $errorEdit = 1;
-            }
         }
         if (empty($password)) {
             $passworderror = "password is required";
