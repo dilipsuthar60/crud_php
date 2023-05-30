@@ -83,20 +83,27 @@
             $messageorder = "desc";
         }
     }
-    if (isset($_POST['submit'])) {
-        $name = trim($_POST['name']);
+    $character = "";
+    if (isset($_GET['search'])) {
+        $name = trim($_GET['search']);
         if (strlen($name) > 2) {
             $sql = "SELECT * FROM `StudentData` WHERE (`name` LIKE '%" . $name . "%' or `email` LIKE '%" . $name . "%' or `gender` LIKE '%" . $name . "%' or `subject` LIKE '%" . $name . "%')";
             $result = $connect->query($sql);
             $total_row = mysqli_num_rows($result);
+            $character = "";
+        } else {
+            $character = "at least 3 character";
         }
     }
     ?>
     <div class="head-btn">
         <a href="user.php"> Add Student</a>
-        <form method="post">
-            <input value="" placeholder="enter a name" type="text" id="name" name="name" />
-            <input type="submit" name="submit" value="Search" class="btn">
+        <form method="GET">
+            <?php echo $character; ?>
+            <input value="<?php if (isset($_GET["search"])) {
+                echo $_GET["search"];
+            } ?>" placeholder="enter a name" type="text" id="search" name="search" />
+            <button type="search">Search</button>
         </form>
     </div>
     <table class="styled-table">
@@ -164,6 +171,10 @@
         }
         ?>
     </table>
+    <?php
+    if ($total_row == 0) {
+        echo "student is not found";
+    } ?>
     <div class="pagination_section">
         <?php
         // $sql = "SELECT * FROM StudentData";
