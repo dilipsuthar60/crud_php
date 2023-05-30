@@ -14,12 +14,12 @@ $subjecterror = "";
 $gendererror = "";
 $messageerror = "";
 if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
     $subject = $_POST['subject'];
     $gender = $_POST['gender'];
-    $message = $_POST['message'];
+    $message = trim($_POST['message']);
     if (empty($name)) {
         $nameerror = "name is required";
         $error = 1;

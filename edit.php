@@ -24,12 +24,12 @@ if (isset($_GET['editid'])) {
     // $result = $connect->query($sql);
     if (isset($_POST['submit'])) {
         echo $_POST['srno'];
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
         $subject = $_POST['subject'];
         $gender = $_POST['gender'];
-        $message = $_POST['message'];
+        $message = trim($_POST['message']);
         // $sql = "delete from StudentData where srno=$id";
         if (empty($name)) {
             $nameerror = "name is required";

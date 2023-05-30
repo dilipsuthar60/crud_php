@@ -7,7 +7,7 @@
 
 body {
   margin: 2rem;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   background-color: #dfe4ea;
   display: flex;
   align-items: center;
