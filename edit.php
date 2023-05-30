@@ -20,15 +20,17 @@ if (isset($_GET['editid'])) {
     $subjecterror = "";
     $gendererror = "";
     $messageerror = "";
-    echo "before";
-
+    $sql = "delete from StudentData where srno=$id";
+    $result = $connect->query($sql);
     if (isset($_POST['submit'])) {
+        echo $_POST['srno'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $subject = $_POST['subject'];
         $gender = $_POST['gender'];
         $message = $_POST['message'];
+        // $sql = "delete from StudentData where srno=$id";
         if (empty($name)) {
             $nameerror = "name is required";
             $errorEdit = 1;
