@@ -80,7 +80,7 @@ textarea {
 
 .styled-table tr {
   color: black;
-  text-align: left;
+  text-align: center;
   border-bottom: 2px solid #4b4b4b;
   margin-bottom: 10px;
 }
@@ -126,4 +126,7 @@ a {
   font-size: 12px;
   text-align: center;
   display: block;
+}
+.searcherror{
+  font-size: 1rem;
 }

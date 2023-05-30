@@ -99,13 +99,14 @@
     <div class="head-btn">
         <a href="user.php"> Add Student</a>
         <form method="GET">
-            <?php echo $character; ?>
             <input value="<?php if (isset($_GET["search"])) {
                 echo $_GET["search"];
             } ?>" placeholder="enter a name" type="text" id="search" name="search" />
             <button type="search">Search</button>
         </form>
     </div>
+    <?php
+    echo '<div class="error searcherror"> ' . $character . '</div>'; ?>
     <table class="styled-table">
         <tr>
             <th><a href="display.php?page=<?php echo $page_number; ?>&sort=srno&orderby=<?php echo $srnoorder; ?>">
