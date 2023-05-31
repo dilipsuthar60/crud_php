@@ -1,6 +1,9 @@
 <?php
 session_start();
 include "config.php";
+if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION["password"])) {
+    header('location:login.php');
+}
 if (isset($_GET['editid'])) {
     $id = $_GET['editid'];
     $current_page = $_GET["page"];
