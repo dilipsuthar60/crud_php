@@ -31,6 +31,11 @@ if (isset($_POST["login"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,16 +46,18 @@ if (isset($_POST["login"])) {
                 echo '<div class="error">Invalid  Useremail and Password</div>';
             ?>
             <h1>Student</h1>
-            <h2>Welcome to Student daitails!</h2>
-            <p class="login-p">Please sign-in to your account and start the adventure</p>
-            <div>
+            <div class="sub-heading">
+                <h2>Welcome to Student daitails!</h2>
+                <p>Please sign-in to your account and start the adventure</p>
+            </div>
+            <div class="login">
                 <input placeholder="enter a name" type="text" id="name" name="name" value="<?php echo $loginname ?>" />
             </div>
-            <div>
+            <div class="login">
                 <input placeholder="enter a email" type="email" id="email" name="email"
                     value="<?php echo $loginemail; ?>" />
             </div>
-            <div>
+            <div class="login">
                 <input placeholder="enter a password" type="password" id="password" name="password" />
             </div>
             <button class="login-btn" type="login" name="login">LOGIN</button>
