@@ -157,7 +157,8 @@ a {
   width: 27rem;
   padding: 1rem;
 }
-.login-container h1,h2 {
+.login-container h1,
+h2 {
   font-weight: 500;
   line-height: 90%;
 }
@@ -168,6 +169,7 @@ a {
   width: 23rem;
   border: none;
   height: 2.5rem;
+  padding: 0.5rem;
   border-radius: 0.6rem;
   border: 1px solid #7f8c8d;
 }

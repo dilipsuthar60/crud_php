@@ -1,3 +1,11 @@
+<?php
+include "config.php";
+
+session_start();
+if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION["password"])) {
+    header('location:login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +19,6 @@
 
 <body>
     <?php
-    include "config.php";
     $srnoorder = "asc";
     $nameorder = "asc";
     $emailorder = "asc";
