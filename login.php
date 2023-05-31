@@ -51,14 +51,15 @@ if (isset($_POST["login"])) {
                 <p>Please sign-in to your account and start the adventure</p>
             </div>
             <div class="login">
-                <input placeholder="enter a name" type="text" id="name" name="name" value="<?php echo $loginname ?>" />
+                <input placeholder="Name" type="text" id="name" name="name" value="<?php echo $loginname ?>" />
             </div>
             <div class="login">
-                <input placeholder="enter a email" type="email" id="email" name="email"
+                <input placeholder="Email" type="email" id="email" name="email"
                     value="<?php echo $loginemail; ?>" />
             </div>
             <div class="login">
-                <input placeholder="enter a password" type="password" id="password" name="password" />
+                <input placeholder="Password" type="password
+                " id="password" name="password" />
             </div>
             <button class="login-btn" type="login" name="login">LOGIN</button>
         </div>

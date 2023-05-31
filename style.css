@@ -183,17 +183,24 @@ h2 {
 .login {
   width: 100%;
   max-width: 340px;
+  border: 1px solid #7f8c8d;
+  border-radius: 0.3rem;
+}
+.password-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .login :focus {
   border: 2px solid #9155fd;
+  border-radius: 0.3rem;
 }
 .login-container input {
   width: 100%;
-  border: none;
   height: 3rem;
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: 1px solid #7f8c8d;
+  border: none;
 }
 .login-forget {
   width: 100%;
