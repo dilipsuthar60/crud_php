@@ -68,8 +68,13 @@ textarea {
 .search-input {
   padding: 0.5rem;
   border: none;
-  border-radius: 0.6rem;
+  border-radius: 0.3rem;
   height: 2.2rem;
+  width: 15rem;
+  border: 1px solid #4b4b4b;
+}
+.search-input:focus {
+  border: 2px solid #9155fd;
 }
 .btn-search {
   width: 4rem;
@@ -156,13 +161,13 @@ a {
   align-items: center;
   text-align: center;
   gap: 18px;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   padding: 1rem;
   width: 26rem;
 }
 .sub-heading {
   text-align: left;
-  color: #2d3436;
+  color: #707070;
 }
 .sub-heading p {
   font-size: 14px;
@@ -183,7 +188,7 @@ h2 {
 .login {
   width: 100%;
   max-width: 340px;
-  border: 1px solid #7f8c8d;
+  border: 1px solid #b3b6b6;
   border-radius: 0.3rem;
 }
 .password-login {
