@@ -86,7 +86,7 @@ if (isset($_GET['editid'])) {
 </head>
 
 <body>
-    <form method="post">
+    <form method="post" class="form">
         <?php if (isset($errorEdit)) {
             if ($errorEdit == 1) {
                 echo '<div style="text-align:center; color:#c0392b">Something Went Wrong Please Check</div>';
