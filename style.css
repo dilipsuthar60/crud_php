@@ -140,7 +140,7 @@ a {
   font-size: 1rem;
 }
 .contanier {
-  height: 100vh;
+  height: 70vh;
   width: 100vh;
   display: flex;
   justify-content: center;
@@ -167,13 +167,13 @@ a {
 .login-container input {
   width: 23rem;
   border: none;
-  height: 2.3rem;
+  height: 2.5rem;
   border-radius: 0.6rem;
   border: 1px solid #7f8c8d;
 }
 .login-btn {
   width: 23rem;
-  height: 2.3rem;
+  height: 2.5rem;
   background-color: #3498db;
   border: none;
   border-radius: 0.6rem;
