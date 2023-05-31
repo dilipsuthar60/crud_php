@@ -65,7 +65,7 @@ textarea {
 .search-input {
   padding: 0.5rem;
   border: none;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   height: 2.2rem;
 }
 .btn-search {
@@ -138,4 +138,46 @@ a {
 }
 .searcherror {
   font-size: 1rem;
+}
+.contanier {
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  border-radius: 0.6rem;
+  width: 27rem;
+  padding: 1rem;
+}
+.login-container h1,h2 {
+  font-weight: 500;
+  line-height: 90%;
+}
+.login-p {
+  color: #95a5a6;
+}
+.login-container input {
+  width: 23rem;
+  border: none;
+  height: 2.3rem;
+  border-radius: 0.6rem;
+  border: 1px solid #7f8c8d;
+}
+.login-btn {
+  width: 23rem;
+  height: 2.3rem;
+  background-color: #3498db;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 600;
 }
