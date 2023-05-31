@@ -104,6 +104,7 @@
             } ?>" placeholder="enter a name" type="text" id="search" name="search" />
             <button type="search" class="btn btn-search">Search</button>
         </form>
+        <a href="logout.php">Logout</a>
     </div>
     <?php
     echo '<div class="error searcherror"> ' . $character . '</div>'; ?>
