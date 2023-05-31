@@ -1,6 +1,5 @@
 <?php
 include "config.php";
-
 session_start();
 if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION["password"])) {
     header('location:login.php');
@@ -36,6 +35,7 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION[
     } else {
         $page_number = 1;
     }
+    echo '<h1 class="welcome-heading">Welcome to ' . $_SESSION["name"] . '</h1>';
     if (isset($_GET["submit"])) {
         echo '<div  class="insert-message">Record Insert Succesfully</div>';
         echo '<script>
