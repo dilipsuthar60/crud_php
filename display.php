@@ -126,10 +126,6 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION[
             <th><a href="display.php?page=<?php echo $page_number; ?>&sort=email&orderby=<?php echo $emailorder; ?>">
                     Email<span style='font-size:20px;'>&#8593;</span>
                     <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <!-- <th><a
-                    href="display.php?page=<?php echo $page_number; ?>&sort=password&orderby=<?php echo $passwordorder; ?>">Password<span
-                        style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th> -->
             <th><a
                     href="display.php?page=<?php echo $page_number; ?>&sort=subject&orderby=<?php echo $subjectorder; ?>">Subject<span
                         style='font-size:20px;'>&#8593;</span>
