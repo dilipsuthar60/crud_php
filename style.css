@@ -97,7 +97,8 @@ input:focus {
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  min-width: 60%;
+  max-width: 60%;
+ 
 }
 
 .styled-table tr {
@@ -266,5 +267,15 @@ h2 {
   }
   .create-heading {
     font-size: 12px;
+  }
+}
+@media (max-width: 1120px) {
+  a{
+    font-size: 10px;
+    margin: 0;
+    padding: 0.6rem;
+  }
+  a span {
+    display: none;
   }
 }
