@@ -256,3 +256,16 @@ h2 {
   border-radius: 0;
   margin: 0;
 }
+@media (max-width: 390px) {
+  .sub-heading h2 {
+    font-size: 16px;
+    text-align: center;
+  }
+  .sub-heading p {
+    font-size: 12px;
+    text-align: center;
+  }
+  .create-heading {
+    font-size: 12px;
+  }
+}
