@@ -140,7 +140,7 @@ if (isset($_GET['editid'])) {
                 <?php echo $subjecterror; ?>
             </span>
         </div>
-        <div>
+        <div class="form-gender">
             <label for="gender">Gender:</label>
             <input type="radio" type="gender" id="gender" name="gender" value="Male" <?php if ($gender == "Male") {
                 echo "checked";

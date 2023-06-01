@@ -5,17 +5,17 @@ $notmatch = NULL;
 $loginname = "";
 $loginemail = "";
 if (isset($_POST["login"])) {
-    $username = $_POST["name"];
     $password = $_POST["password"];
     $useremail = $_POST["email"];
     $loginname = $username;
     $loginemail = $useremail;
-    $sql = "SELECT * FROM `StudentData` WHERE `email` = '" . $useremail . "' AND  `password` = '" . $password . "' AND `name` = '" . $username . "'";
+    $sql = "SELECT * FROM `account` WHERE `email` = '" . $useremail . "' AND  `password` = '" . $password . "'";
     $result = $connect->query($sql);
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION["name"] = $username;
-        $_SESSION["password"] = $password;
-        $_SESSION["email"] = $useremail;
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION["name"] = $row["name"];
+        $_SESSION["password"] =$row["password"];
+        $_SESSION["email"] = $row["email"];
         header('location:display.php');
     } else {
         $notmatch = 1;
@@ -40,6 +40,8 @@ if (isset($_POST["login"])) {
             font-size: 16px;
             font-family: sans-serif;
         }
+
+        a {}
     </style>
 </head>
 
@@ -50,13 +52,10 @@ if (isset($_POST["login"])) {
             if ($notmatch)
                 echo '<div class="error">Invalid  Useremail and Password</div>';
             ?>
-            <h1>Student</h1>
+            <h1>Login </h1>
             <div class="sub-heading">
                 <h2>Welcome to Student daitails!</h2>
-                <p>Please sign-in to your account and start the adventure</p>
-            </div>
-            <div class="login">
-                <input placeholder="Name" type="text" id="name" name="name" value="<?php echo $loginname ?>" />
+                <p>Please login-in to your account and start the adventure</p>
             </div>
             <div class="login">
                 <input placeholder="Email" type="email" id="email" name="email" value="<?php echo $loginemail; ?>" />
@@ -65,6 +64,7 @@ if (isset($_POST["login"])) {
                 <input placeholder="Password" type="password" id="password" name="password" />
             </div>
             <button class="login-btn" type="login" name="login">LOGIN</button>
+            <div class="create-heading">New on our platform? <span><a href="sign.php">Create an account</a></span></div>
         </div>
     </form>
 </body>
