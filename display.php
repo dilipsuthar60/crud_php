@@ -145,13 +145,6 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["name"]) or !isset($_SESSION[
         if ($srnoorder == "desc") {
             $rowCount = $total_row;
         }
-        // if ($current_page_count == 0) {
-        //     $page_number--;
-        //     $start_page = ($page_number - 1) * $per_page_number;
-        //     $sql = "SELECT * FROM `StudentData` order by  `srno` DESC limit $start_page,$per_page_number ";
-        //     $result = $connect->query($sql);
-        // }
-        
         while ($row = mysqli_fetch_assoc($result)) {
             $srno = $row["srno"];
             $name = $row["name"];
