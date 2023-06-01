@@ -35,6 +35,10 @@ if (isset($_POST["login"])) {
         body {
             margin: 0;
         }
+
+        input::placeholder {
+            font-size: 16px;
+        }
     </style>
 </head>
 
