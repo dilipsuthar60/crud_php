@@ -48,10 +48,6 @@ input:focus {
   align-items: center;
   gap: 1.5rem;
 }
-
-textarea {
-  resize: none;
-}
 .head-btn {
   display: flex;
   justify-content: space-evenly;
@@ -173,7 +169,7 @@ a {
   border-radius: 0.5rem;
   padding: 1rem;
   width: 26rem;
-  border: 1px solid #bdc3c7;
+  border: 1.5px solid #bdc3c7;
 }
 .sub-heading {
   text-align: left;
@@ -256,7 +252,10 @@ h2 {
   border-radius: 0;
   margin: 0;
 }
-@media (max-width: 390px) {
+@media (max-width: 420px) {
+  .login-container {
+    margin: 0.5rem;
+  }
   .sub-heading h2 {
     font-size: 16px;
     text-align: center;
