@@ -146,20 +146,22 @@ if (isset($_POST['submit'])) {
                 <?php echo $subjecterror; ?>
             </span>
         </div>
-        <div class="form-gender">
-            <label for="gender">Gender:</label>
-            <input type="radio" type="gender" id="gender" name="gender" value="Male" <?php if ($gender == "Male") {
-                echo "checked";
-            } ?> />
-            <label for="gender">Male</label>
+        <div>
+            <div class="form-gender">
+                <label for="gender">Gender:</label>
+                <input type="radio" type="gender" id="gender" name="gender" value="Male" <?php if ($gender == "Male") {
+                    echo "checked";
+                } ?> />
+                <label for="gender">Male</label>
 
-            <input type="radio" type="gender" id="gender" name="gender" value="Female" <?php if ($gender == "Female") {
-                echo "checked";
-            } ?> />
-            <label for="gender">Female</label>
-            <span class="error">
+                <input type="radio" type="gender" id="gender" name="gender" value="Female" <?php if ($gender == "Female") {
+                    echo "checked";
+                } ?> />
+                <label for="gender">Female</label>
+            </div>
+            <div class="error">
                 <?php echo $gendererror; ?>
-            </span>
+            </div>
         </div>
         <div>
             <label for="message">Massage:</label>
