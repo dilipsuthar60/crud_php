@@ -115,50 +115,53 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
     </div>
     <?php
     echo '<div class="error searcherror"> ' . $character . '</div>'; ?>
-    <table class="styled-table">
-        <tr>
-            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=srno&orderby=<?php echo $srnoorder; ?>">
-                    Srno<span style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=name&orderby=<?php echo $nameorder; ?>">
-                    Name<span style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=email&orderby=<?php echo $emailorder; ?>">
-                    Email<span style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a
-                    href="display.php?page=<?php echo $page_number; ?>&sort=subject&orderby=<?php echo $subjectorder; ?>">Subject<span
-                        style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a href="display.php?page=<?php echo $page_number; ?>&sort=gender&orderby=<?php echo $genderorder; ?>">Gender<span
-                        style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a
-                    href="display.php?page=<?php echo $page_number; ?>&sort=message&orderby=<?php echo $messageorder; ?>">Message<span
-                        style='font-size:20px;'>&#8593;</span>
-                    <span style='font-size:20px;'>&#8595;</span> </a></th>
-            <th><a>Action</a></th>
-        </tr>
-        <?php
-        $current_page_count = mysqli_num_rows($result);
-        $rowCount = 0;
-        if ($srnoorder == "desc") {
-            $rowCount = $total_row;
-        }
-        while ($row = mysqli_fetch_assoc($result)) {
-            $srno = $row["srno"];
-            $name = $row["name"];
-            $email = $row["email"];
-            $password = $row["password"];
-            $subject = $row["subject"];
-            $gender = $row["gender"];
-            $message = $row["message"];
+    <div class="table-container">
+        <table class="styled-table">
+            <tr>
+                <th><a href="display.php?page=<?php echo $page_number; ?>&sort=srno&orderby=<?php echo $srnoorder; ?>">
+                        Srno<span style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a href="display.php?page=<?php echo $page_number; ?>&sort=name&orderby=<?php echo $nameorder; ?>">
+                        Name<span style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a
+                        href="display.php?page=<?php echo $page_number; ?>&sort=email&orderby=<?php echo $emailorder; ?>">
+                        Email<span style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a
+                        href="display.php?page=<?php echo $page_number; ?>&sort=subject&orderby=<?php echo $subjectorder; ?>">Subject<span
+                            style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a
+                        href="display.php?page=<?php echo $page_number; ?>&sort=gender&orderby=<?php echo $genderorder; ?>">Gender<span
+                            style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a
+                        href="display.php?page=<?php echo $page_number; ?>&sort=message&orderby=<?php echo $messageorder; ?>">Message<span
+                            style='font-size:20px;'>&#8593;</span>
+                        <span style='font-size:20px;'>&#8595;</span> </a></th>
+                <th><a>Action</a></th>
+            </tr>
+            <?php
+            $current_page_count = mysqli_num_rows($result);
+            $rowCount = 0;
             if ($srnoorder == "desc") {
-                $rowCount--;
-            } else {
-                $rowCount++;
+                $rowCount = $total_row;
             }
-            echo '<tr>
+            while ($row = mysqli_fetch_assoc($result)) {
+                $srno = $row["srno"];
+                $name = $row["name"];
+                $email = $row["email"];
+                $password = $row["password"];
+                $subject = $row["subject"];
+                $gender = $row["gender"];
+                $message = $row["message"];
+                if ($srnoorder == "desc") {
+                    $rowCount--;
+                } else {
+                    $rowCount++;
+                }
+                echo '<tr>
             <td>' . $rowCount + ($page_number - 1) * $per_page_number . '</td>
             <td>' . $name . '</td>
             <td>' . $email . '</td>
@@ -166,9 +169,10 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
             <td>' . $gender . '</td>
             <td>' . $message . '</td>
             <td><a href="edit.php?page=' . $page_number . '&editid=' . $srno . '" style="padding:0.3rem; color:white;background-color:green;border-radius:5px;">Edit</a>&nbsp;<a href="delete.php?page=' . $page_number . '&deleteid=' . $srno . '" style="padding:0.3rem; color:white;background-color:red;border-radius:5px;" >Delete</a></td>';
-        }
-        ?>
-    </table>
+            }
+            ?>
+        </table>
+    </div>
     <?php
     if ($total_row == 0) {
         echo "student is not found";
