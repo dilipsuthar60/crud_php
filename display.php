@@ -178,8 +178,6 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
     } ?>
     <div class="pagination_section">
         <?php
-        // $sql = "SELECT * FROM StudentData";
-        // $result = $connect->query($sql);
         $total_number_of_rows = $total_row;
         $page_needed = ceil(($total_number_of_rows) / ($per_page_number));
         if ($page_number > 1) {
