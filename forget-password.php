@@ -4,7 +4,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,19 +11,14 @@ session_start();
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <style>
-        body {
-            margin: 0;
-        }
-
         input::placeholder {
             font-size: 16px;
             font-family: sans-serif;
         }
 
-        .forget-heading{
+        .forget-heading {
             color: rgba(58, 53, 65, 0.87);
             font-weight: 500;
-
         }
     </style>
 </head>
