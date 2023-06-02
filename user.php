@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body style="justify-content:center">
     <form method="post" class="form">
         <?php if (isset($error)) {
             if ($error == 1) {

@@ -98,6 +98,7 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
             $result = $connect->query($sql);
             $total_row = mysqli_num_rows($result);
             $character = "";
+
         } else {
             $character = "at least 3 character";
         }
@@ -106,9 +107,7 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
     <div class="head-btn">
         <a href="user.php"> Add Student</a>
         <form method="GET">
-            <input class="search-input" value="<?php if (isset($_GET["search"])) {
-                echo $_GET["search"];
-            } ?>" placeholder="enter a name" type="text" id="search" name="search" />
+            <input class="search-input" value="" placeholder="enter a name" type="text" id="search" name="search" />
             <button type="search" class="btn btn-search">Search</button>
         </form>
         <a href="logout.php">Logout</a>
