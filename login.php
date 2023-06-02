@@ -63,17 +63,13 @@ if (isset($_POST["login"])) {
                         value="<?php echo $loginemail; ?>" />
                 </div>
             </div>
-            <!-- <div class="login">
-                <input placeholder="Password" type="password" id="password" name="password" />
-            </div> -->
             <div class="section">
                 <div class="login">
                     <input placeholder="Password" type="password" id="password" name="password"
                         value="<?php echo $signpassword ?>" />
                 </div>
-                <div class="forget">Forgot Password?</div>
+                <div class="forget"><span><a href="forget-password.php">Forgot Password?</a></span></div>
             </div>
-            <!-- <div class="forget">Forgot Password?</div> -->
             <button class="login-btn" type="login" name="login">LOGIN</button>
             <div class="create-heading">New on our platform? <span><a href="sign.php">Create an account</a></span></div>
         </div>
