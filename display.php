@@ -72,7 +72,7 @@ if (!isset($_SESSION["email"]) or !isset($_SESSION["password"]) or !isset($_SESS
     if (isset($_GET["sort"])) {
         $id = $_GET["sort"];
         $ordersorting = $_GET["orderby"];
-        $sql = "SELECT * from StudentData ORDER BY " . $id . " " . $ordersorting . " limit $start_page,$per_page_number ";
+        $sql = "SELECT * from StudentData ORDER BY " . $id . " " . $ordersorting . " limit " . $start_page . "," . $per_page_number . " ";
         $result = $connect->query($sql);
         if ($id == "srno" and $ordersorting == "asc") {
             $srnoorder = "desc";
