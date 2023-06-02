@@ -14,7 +14,7 @@ if (isset($_POST["login"])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION["name"] = $row["name"];
-        $_SESSION["password"] =$row["password"];
+        $_SESSION["password"] = $row["password"];
         $_SESSION["email"] = $row["email"];
         header('location:display.php');
     } else {
@@ -57,12 +57,23 @@ if (isset($_POST["login"])) {
                 <h2>Welcome to Student daitails!</h2>
                 <p>Please login-in to your account and start the adventure</p>
             </div>
-            <div class="login">
-                <input placeholder="Email" type="email" id="email" name="email" value="<?php echo $loginemail; ?>" />
+            <div class="section">
+                <div class="login">
+                    <input placeholder="Email" type="email" id="email" name="email"
+                        value="<?php echo $loginemail; ?>" />
+                </div>
             </div>
-            <div class="login">
+            <!-- <div class="login">
                 <input placeholder="Password" type="password" id="password" name="password" />
+            </div> -->
+            <div class="section">
+                <div class="login">
+                    <input placeholder="Password" type="password" id="password" name="password"
+                        value="<?php echo $signpassword ?>" />
+                </div>
+                <div class="forget">Forgot Password?</div>
             </div>
+            <!-- <div class="forget">Forgot Password?</div> -->
             <button class="login-btn" type="login" name="login">LOGIN</button>
             <div class="create-heading">New on our platform? <span><a href="sign.php">Create an account</a></span></div>
         </div>

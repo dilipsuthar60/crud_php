@@ -252,25 +252,44 @@ h2 {
   border-radius: 0;
   margin: 0;
 }
+.forget {
+  margin: 0;
+  width: 100%;
+  color: #9155fd;
+  text-decoration: underline;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+.section {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
 @media (max-width: 420px) {
   .login-container {
     margin: 0.5rem;
   }
   .sub-heading h2 {
-    font-size: 16px;
+    font-size: 1rem;
     text-align: center;
   }
   .sub-heading p {
-    font-size: 12px;
+    font-size: 1rem;
     text-align: center;
   }
   .create-heading {
-    font-size: 12px;
+    font-size: 1rem;
+  }
+  .forget{
+    font-size: 1rem;  
   }
 }
 @media (max-width: 1120px) {
   a {
-    font-size: 10px;
+    font-size: 1rem;
     margin: 0;
     padding: 0.6rem;
   }
